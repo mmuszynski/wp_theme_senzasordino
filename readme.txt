@@ -11,11 +11,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Senza Sordino is a template for the International Conference of Symphony and Opera Musicians publication *Senza Sordino*.
 
-Twenty Twenty-One is a blank canvas for your ideas and it makes the block editor your best brush.
+Based on the default Wordpress theme, Twenty Twenty-One, the design mimics the printed publication.
 
-With new block patterns, which allow you to create a beautiful layout in a matter of seconds, this theme’s soft colors and eye-catching — yet timeless — design will let your work shine.
-
-Take it for a spin! See how Twenty Twenty-One elevates your portfolio, business website, or personal blog.
+The following information is from the original readme.txt file, and still needs to be updated:
 
 == Installation ==
 
