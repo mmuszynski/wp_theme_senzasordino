@@ -1,5 +1,5 @@
-=== Twenty Twenty-One ===
-Contributors: wordpressdotorg
+=== Senza Sordino ===
+Contributors: Mike Muszynski
 Requires at least: 5.3
 Tested up to: 5.8
 Requires PHP: 5.6
@@ -8,6 +8,8 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
+
+Senza Sordino is a template for the International Conference of Symphony and Opera Musicians publication *Senza Sordino*.
 
 Twenty Twenty-One is a blank canvas for your ideas and it makes the block editor your best brush.
 
