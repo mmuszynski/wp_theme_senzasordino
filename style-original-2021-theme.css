@@ -859,19 +859,16 @@ template {
 	margin-right: auto;
 }
 
-/*
- Removed top-level padding from masthead
- */
-/*.site-header {*/
-/*	padding-top: calc(0.75 * var(--global--spacing-vertical));*/
-/*	padding-bottom: calc(2 * var(--global--spacing-vertical));*/
-/*}*/
-/*@media only screen and (min-width: 482px) {*/
-/**/
-/*	.site-header {*/
-/*		padding-bottom: calc(3 * var(--global--spacing-vertical));*/
-/*	}*/
-/*}*/
+.site-header {
+	padding-top: calc(0.75 * var(--global--spacing-vertical));
+	padding-bottom: calc(2 * var(--global--spacing-vertical));
+}
+@media only screen and (min-width: 482px) {
+
+	.site-header {
+		padding-bottom: calc(3 * var(--global--spacing-vertical));
+	}
+}
 
 /**
  * Site-main children wrappers
@@ -1092,7 +1089,6 @@ body {
 	color: var(--global--color-primary);
 	text-align: left;
 	background-color: var(--global--color-background);
-    border-top: 12px solid #c17548;
 }
 
 button {
@@ -3794,32 +3790,26 @@ table.wp-calendar-table caption {
 /* Category 06 contains all "bigger" components which contain elements of the previous two categories like header, footer, page template, single template, comments section, archives, ... */
 .site-header {
 	display: flex;
-	align-items: center;
-    justify-content: center;
+	align-items: flex-start;
 	flex-wrap: wrap;
 	row-gap: var(--global--spacing-vertical);
-    background-color: #fff;
 }
 
 .wp-custom-logo .site-header {
 	align-items: center;
 }
+@media only screen and (min-width: 482px) {
 
-/*
- Removed padding from site-header
- */
-/*@media only screen and (min-width: 482px) {*/
-/**/
-/*	.site-header {*/
-/*		padding-top: calc(var(--global--spacing-vertical) / 0.75);*/
-/*	}*/
-/*}*/
-/*@media only screen and (min-width: 822px) {*/
-/**/
-/*	.site-header {*/
-/*		padding-top: calc(2.4 * var(--global--spacing-vertical));*/
-/*	}*/
-/*}*/
+	.site-header {
+		padding-top: calc(var(--global--spacing-vertical) / 0.75);
+	}
+}
+@media only screen and (min-width: 822px) {
+
+	.site-header {
+		padding-top: calc(2.4 * var(--global--spacing-vertical));
+	}
+}
 
 .site-branding {
 	color: var(--branding--color-text);
@@ -3873,9 +3863,6 @@ table.wp-calendar-table caption {
 
 .site-description {
 	color: currentColor;
-    border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
-    font-weight: 700;
 	font-family: var(--branding--description--font-family);
 	font-size: var(--branding--description--font-size);
 	line-height: 1.4;
@@ -5990,57 +5977,3 @@ footer {
 .is-IE .post-thumbnail .wp-post-image {
 	min-width: auto;
 }
-
-/* Senza Sordino Specific content */
-/*// SENZA SORDINO header text //*/
-/*
- Previously, the font-size was 130px and the letter-spacing was 5px
- here, we go for a proportional version that takes into account the viewport
- */
-a.masthead {
-    text-decoration: none;
-}
-a.masthead h1.nameplate {
-    font-size:130px;
-    letter-spacing:5px;
-    text-align:center;
-    color:#000;
-    text-decoration:none;
-    font-family: 'Abril Fatface', 'Times New Roman', serif;
-}
-a.masthead h1.nameplate:hover {
-    color:#081856;
-}
-
-@media only screen and (max-width: 1100px) {
-    a.senza_logo h1.nameplate {
-        font-size:80px;
-        letter-spacing:3px;
-    }
-}
-
-@media only screen and (max-width: 800px) {
-    a.senza_logo h1.nameplate {
-        font-size:50px;
-        letter-spacing:3px;
-    }
-}
-
-/*// Required Fonts //*/
-/* latin-ext */
-@font-face {
-  font-family: 'Abril Fatface';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/abrilfatface/v12/zOL64pLDlL1D99S8g8PtiKchq-lmjcDidBeT5g.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Abril Fatface';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/abrilfatface/v12/zOL64pLDlL1D99S8g8PtiKchq-dmjcDidBc.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
