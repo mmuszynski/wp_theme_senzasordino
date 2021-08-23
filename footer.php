@@ -66,6 +66,7 @@
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 
+</div><!-- #newsprint -->
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
