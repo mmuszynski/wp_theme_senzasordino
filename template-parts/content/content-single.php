@@ -14,8 +14,11 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<header class="entry-header alignwide">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-		<?php twenty_twenty_one_post_thumbnail(); ?>
+        <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+
+        <div class="author-byline">
+            <?php get_template_part( 'template-parts/post/author', 'byline' ); ?>
+        </div>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">

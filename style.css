@@ -1,13 +1,61 @@
-@charset "UTF-8";
+/*
+Theme Name: Senza Sordino
+Author: Mike Muszynski
+Description: Responsive newsletter design
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: senzasordino
 
-div#page {
-    
+This theme, like WordPress, is licensed under the GPL.
+*/
+
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
+
+:root {
+    --content-width: 1130px;
+}
+
+@media only screen and (max-width: 1130px) {
+    :root {
+        --content-width: 800px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    :root {
+        --content-width: 600px;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    :root {
+        --content-width: 480px;
+    }
+}
+
+body {
+    background-color:#fbf9ea;  /* to match ICSOM website */
+    font-family: 'EB Garamond';
+    font-size: 16pt;
+    border-top:12px solid #c17548;  /* to match ICSOM website */
+    margin: 0px;
 }
 
 div#newsprint {
-    width: 1130px;
+	padding: 0;
+    margin: 0 auto 20px;
+    max-width: var(--content-width);
     background-color: white;
     border: 1px solid #e3e3e3;
+}
+
+div#icsom_logo {
+    margin: 0 auto 20px;
+    max-width: var(--content-width);
 }
 
 /*
@@ -43,10 +91,6 @@ p.site-description {
 }
 
 @media only screen and (max-width: 1130px) {
-    div#newsprint {
-        width: 800px;
-    }
-    
     h1.nameplate {
         font-size: 90px;
         letter-spacing: 4px;
@@ -54,27 +98,65 @@ p.site-description {
 }
 
 @media only screen and (max-width: 800px) {
-    div#newsprint {
-        width: 600px;
-    }
-    
     h1.nameplate {
         font-size: 70px;
-        letter-spacing: 3px;
+        letter-spacing: 2.5px;
     }
 }
 
 @media only screen and (max-width: 640px) {
-    div#newsprint {
-        width: 480px;
-    }
-    
     h1.nameplate {
-        font-size: 40px;
-        letter-spacing: 2px;
+        font-size: 50px;
+        letter-spacing: 1px;
     }
 }
 
+/*
+EXCERPT PAGE - ISSUES
+This is the section where the members of each category are displayed.
+It is considered an excerpt by wordpress.
+*/
+h2.entry-title a, article.type-post h1.entry-title {
+	margin: 0;
+	color:#22388b;
+	font-weight:400;
+	font-family: 'EB Garamond', sans-serif;
+	font-size: 36pt;
+	text-decoration: none;
+}
+
+/*
+Post styling
+This for the body of the Senza Sordino articles
+*/
+
+article.post {
+	max-width: 800px;
+	display: inline-block;
+	margin-top: 20px;
+	margin-left: calc((100% - 800px) / 2);
+}
+
+
+/*
+Byline Styling for authors
+*/
+
+div.author-byline-content {
+	margin-top: 10px;
+	display: flex;
+}
+
+div.author-byline-information {
+	display: block;
+	margin-left: 20px;
+}
+
+img.avatar {
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 0.1em;
+}
 
 
 /*// Required Fonts //*/
@@ -94,4 +176,3 @@ p.site-description {
   src: url(https://fonts.gstatic.com/s/abrilfatface/v12/zOL64pLDlL1D99S8g8PtiKchq-dmjcDidBc.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
