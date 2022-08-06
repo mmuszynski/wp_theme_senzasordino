@@ -15,18 +15,19 @@
             </div>
 
             <div class="author-byline-information">
-            <div class="author-byline">
-                <?php
-                printf(
-                    /* translators: %s: Author name. */
-                    esc_html__( 'By %s', 'twentytwentyone' ),
-                    get_the_author()
-                );
-                ?>
-            </div>
-            <div class="author-byline-post-date">
-                Jan 1, 1970
-            </div>
+                <div class="author-byline">
+                    <?php
+                    printf(
+                        /* translators: %s: Author name. */
+                        esc_html__( 'By %s', 'twentytwentyone' ),
+                        get_the_author()
+                    );
+                    ?>
+                </div>
+                <div class="author-byline-post-date">
+                    <? senzasordino_posted_on(); ?>
+                    <? senzasordino_updated_on(); ?>
+                </div>
             </div>
         </div><!-- .author-byline-content -->
     </div><!-- .author-byline -->

@@ -33,6 +33,37 @@ if ( ! function_exists( 'senzasordino_posted_on' ) ) {
 	}
 }
 
+if ( ! function_exists( 'senzasordino_updated_on' ) ) {
+    /**
+     * Prints HTML with meta information for the current post last updated date/time.
+     *
+     * @since senzasordino 1.0
+     *
+     * @return void
+     */
+    function senzasordino_updated_on() {
+        $time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+        
+        $date = get_the_date();
+        $update = get_the_modified_date();
+        
+        if ( $date != $update ) {
+            $time_string = sprintf(
+                $time_string,
+                esc_attr( get_the_modified_date( DATE_W3C ) ),
+                esc_html( get_the_modified_date() )
+            );
+            echo '<span class="updated-on">';
+            printf(
+                /* translators: %s: Publish date. */
+                esc_html__( 'Updated on %s', 'ICSOM' ),
+                $time_string // phpcs:ignore WordPress.Security.EscapeOutput
+            );
+            echo '</span>';
+        }
+    }
+}
+
 if ( ! function_exists( 'senzasordino_posted_by' ) ) {
 	/**
 	 * Prints HTML with meta information about theme author.

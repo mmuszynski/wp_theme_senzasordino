@@ -143,19 +143,27 @@ Byline Styling for authors
 */
 
 div.author-byline-content {
-	margin-top: 10px;
+	padding-top: 10px;
+	display: flex;
+}
+
+div.author-avatar {
 	display: flex;
 }
 
 div.author-byline-information {
-	display: block;
-	margin-left: 20px;
+	padding-left: 20px;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 img.avatar {
   border-radius: 50%;
   border-style: solid;
   border-width: 0.1em;
+  
 }
 
 
