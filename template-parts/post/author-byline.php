@@ -31,4 +31,3 @@
             </div>
         </div><!-- .author-byline-content -->
     </div><!-- .author-byline -->
-<hr>
