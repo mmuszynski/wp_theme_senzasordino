@@ -41,7 +41,6 @@ body {
     background-color:#fbf9ea;  /* to match ICSOM website */
     font-family: 'EB Garamond';
     font-size: 16pt;
-    border-top:12px solid #c17548;  /* to match ICSOM website */
     margin: 0px;
 }
 
@@ -61,54 +60,41 @@ div#icsom_logo {
 /*
  SENZA SORDINO MASTHEAD
  */
-a.masthead {
-    color: #000;
-    text-decoration: none;
+header.global-header-wrapper {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	height: 65px;
+	width: 100%;
+	border-bottom: 2px solid black;
+	background: white;
+	display: flex;
 }
 
-a.masthead:hover {
-    color: #081856;
+div.global-header-fix-for-wp-admin-bar {
+	height: 32px;
 }
 
-h1.nameplate {
-    font-size: 130px;
-    letter-spacing: 5px;
-    text-align: center;
-    margin: 0px;
-    font-family: 'Abril Fatface', 'Times New Roman', serif;
-    background-color: white;
+div.fix-for-wp-admin-bar {
+	top: 32px;
 }
 
-p.site-description {
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    text-align: center;
-    
-    padding: 5px 40px;
-    font-weight: 700;
-    font-family: 'Open Sans', sans-serif;
-    margin: 0px;
+div.global-header-site-logo {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex: 1 4 200px;
+    overflow: hidden;
 }
 
-@media only screen and (max-width: 1130px) {
-    h1.nameplate {
-        font-size: 90px;
-        letter-spacing: 4px;
-    }
+div.global-header-search {
+	display: flex;
+	align-items: center;
 }
 
-@media only screen and (max-width: 800px) {
-    h1.nameplate {
-        font-size: 70px;
-        letter-spacing: 2.5px;
-    }
-}
-
-@media only screen and (max-width: 640px) {
-    h1.nameplate {
-        font-size: 50px;
-        letter-spacing: 1px;
-    }
+div.global-header-icsom-logo {
+	display: flex;
+	align-items: center;
 }
 
 /*

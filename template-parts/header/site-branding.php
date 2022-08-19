@@ -14,15 +14,7 @@ $header_class = $show_title ? 'nameplate' : 'screen-reader-text';
 
 ?>
 
-<?php if ( has_custom_logo() && $show_title ) : ?>
-	<div class="site-logo"><?php the_custom_logo(); ?></div>
-<?php endif; ?>
-
 <div class="site-branding">
-
-	<?php if ( has_custom_logo() && ! $show_title ) : ?>
-		<div class="site-logo"><?php the_custom_logo(); ?></div>
-	<?php endif; ?>
 
 	<?php if ( $blog_info ) : ?>
         <a class="masthead" href="<?php echo esc_url( home_url( '/' ) ); ?>">
