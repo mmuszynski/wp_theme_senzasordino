@@ -1,21 +1,22 @@
 <?php
 /**
- * The template for displaying archive pages
+ * The template for displaying issue pages based on category
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package WordPress
- * @subpackage Twenty_Twenty_One
- * @since Twenty Twenty-One 1.0
+ * @subpackage SenzaSordino
+ * @since SenzaSordino 0.5
  */
 
 get_header();
 $description = get_the_archive_description();
-?>
 
-<?php if( get_field('sub_heading') ): ?>
-    <h2><?php the_field('sub_heading'); ?></h2>
-<?php endif; ?>
+
+// Bootstrap
+//wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css' );
+echo get_template_directory_uri() . '/css/bootstrap.min.css';
+?>
 
 <?php if ( have_posts() ) : ?>
 
@@ -25,6 +26,8 @@ $description = get_the_archive_description();
 			<div class="archive-description"><?php echo wp_kses_post( wpautop( $description ) ); ?></div>
 		<?php endif; ?>
 	</header><!-- .page-header -->
+
+    <button class="btn btn-primary">Button!</button>
 
 	<?php while ( have_posts() ) : ?>
 		<?php the_post(); ?>
