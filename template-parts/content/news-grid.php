@@ -3,26 +3,27 @@
  * Lays out the current query as a newspaper front: a lead story with a rail of
  * top stories beside it, followed by a multi-column grid of the remaining posts.
  *
+ * Accepts $args['query'] (WP_Query); defaults to the main query.
+ *
  * @package WordPress
  * @subpackage senzasordino
  * @since senzasordino 1.1
  */
 
-global $wp_query;
-
+$grid_query = isset( $args['query'] ) ? $args['query'] : $GLOBALS['wp_query'];
 $rail_size  = 3;
 $lead_count = 0;
 $rail_count = 0;
 
-if ( ! is_paged() && $wp_query->post_count > 1 ) {
+if ( ! is_paged() && $grid_query->post_count > 1 ) {
 	$lead_count = 1;
-	$rail_count = min( $rail_size, $wp_query->post_count - 1 );
+	$rail_count = min( $rail_size, $grid_query->post_count - 1 );
 }
-$more_count = $wp_query->post_count - $lead_count - $rail_count;
+$more_count = $grid_query->post_count - $lead_count - $rail_count;
 
-$senzasordino_render = function ( $count, $variant ) {
-	for ( $i = 0; $i < $count && have_posts(); $i++ ) {
-		the_post();
+$senzasordino_render = function ( $count, $variant ) use ( $grid_query ) {
+	for ( $i = 0; $i < $count && $grid_query->have_posts(); $i++ ) {
+		$grid_query->the_post();
 		get_template_part( 'template-parts/content/content', 'card', array( 'variant' => $variant ) );
 	}
 };

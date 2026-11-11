@@ -456,6 +456,9 @@ function twenty_twenty_one_scripts() {
 		);
 	}
 
+	// Bootstrap (ICSOM navigation bar dropdowns and mobile toggle).
+	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array(), '5.1.3', true );
+
 	// Responsive embeds script.
 	wp_enqueue_script(
 		'twenty-twenty-one-responsive-embeds-script',

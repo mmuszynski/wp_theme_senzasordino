@@ -23,8 +23,11 @@
 <body <?php body_class(); ?>>
 
 <?php wp_body_open(); ?>
+<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'twentytwentyone' ); ?></a>
+
+<?php get_template_part( 'template-parts/header/icsom-header' ); ?>
+
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'twentytwentyone' ); ?></a>
 
     <?php get_template_part( 'template-parts/header/site-header', 'bar' ); ?>
 

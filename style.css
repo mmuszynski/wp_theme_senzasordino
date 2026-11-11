@@ -61,56 +61,103 @@ div#newsprint {
 }
 
 /*
+ ICSOM SITE HEADER (matches icsom.org)
+ */
+.icsom-header {
+	font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+.icsom-navbar {
+	background-color: #12478a;
+	border-bottom: 1px solid #dee2e6;
+}
+
+.icsom-navbar .nav-link {
+	color: rgba(255, 255, 255, 0.85);
+}
+
+.icsom-navbar .nav-link:hover,
+.icsom-navbar .nav-link:focus,
+.icsom-navbar .nav-link.active {
+	color: #fff;
+}
+
+.icsom-navbar .dropdown-item {
+	font-size: 16px;
+}
+
+.icsom-brand {
+	background-color: #f8f9fa;
+	border-bottom: 1px solid #dee2e6;
+	padding: 24px 0;
+}
+
+.icsom-brand-inner {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+}
+
+.icsom-logo {
+	display: block;
+	line-height: 0;
+}
+
+.icsom-logo img {
+	height: auto;
+}
+
+.icsom-logo-horizontal {
+	width: 560px;
+	max-width: 100%;
+}
+
+.icsom-logo-vertical {
+	display: none;
+	width: 160px;
+}
+
+.icsom-account {
+	display: flex;
+	gap: 6px;
+}
+
+.icsom-button,
+.icsom-button:visited {
+	background-color: rgb(215, 183, 40);
+	border-color: rgb(215, 183, 40);
+	color: #000;
+}
+
+.icsom-button:hover,
+.icsom-button:focus {
+	background-color: #dbbe3d;
+	border-color: #dbbe3d;
+	color: #000;
+}
+
+/*
  SENZA SORDINO MASTHEAD
  */
 .masthead {
-	padding-top: 20px;
-}
-
-.masthead-main {
-	display: grid;
-	grid-template-columns: 1fr minmax(0, 2.4fr) 1fr;
-	align-items: center;
-	gap: var(--gutter);
-	padding-bottom: 16px;
+	padding-top: 24px;
 }
 
 .masthead-nameplate {
 	margin: 0;
+	padding-bottom: 16px;
 	text-align: center;
 	line-height: 0;
 }
 
 .masthead-nameplate img {
 	width: 100%;
-	max-width: 640px;
+	max-width: 560px;
 	height: auto;
-}
-
-.masthead-ear {
-	font-family: var(--font-label);
-	font-size: 11px;
-	line-height: 1.35;
-	color: var(--ink-soft);
-}
-
-.masthead-ear-right {
-	display: flex;
-	justify-content: flex-end;
-}
-
-.masthead-icsom {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	max-width: 220px;
-	text-decoration: none;
-	text-transform: uppercase;
-	letter-spacing: 0.04em;
-}
-
-.masthead-icsom img {
-	flex: 0 0 auto;
 }
 
 .masthead-search {
@@ -119,12 +166,12 @@ div#newsprint {
 }
 
 .masthead-search input {
-	width: 140px;
+	width: 180px;
 	border: 0;
 	background: transparent;
 	font-family: var(--font-label);
 	font-size: 13px;
-	padding: 4px 2px;
+	padding: 2px;
 }
 
 .masthead-search input:focus {
@@ -156,16 +203,16 @@ div#newsprint {
 	letter-spacing: 0.03em;
 }
 
+.masthead-dateline:last-child {
+	border-bottom: 4px double var(--ink);
+}
+
 .masthead-tagline {
 	font-family: var(--font-body);
 	font-style: italic;
 	font-weight: 400;
 	font-size: 15px;
 	letter-spacing: 0;
-}
-
-.masthead-home-link {
-	text-decoration: none;
 }
 
 .section-nav {
@@ -193,10 +240,39 @@ div#newsprint {
 }
 
 .section-nav-list li a:hover,
-.section-nav-list .current-cat > a,
 .section-nav-list .current-menu-item > a {
 	text-decoration: underline;
 	text-underline-offset: 4px;
+}
+
+/*
+ CURRENT ISSUE HEADING (front page)
+ */
+.issue-header {
+	margin: 20px 0 4px;
+	text-align: center;
+}
+
+.issue-label {
+	margin: 0;
+	font-family: var(--font-label);
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--accent);
+}
+
+.issue-title {
+	margin: 2px 0 0;
+	font-family: var(--font-headline);
+	font-size: 34px;
+	font-weight: 700;
+	line-height: 1.15;
+}
+
+.issue-title a {
+	text-decoration: none;
 }
 
 /*
@@ -733,9 +809,20 @@ a.article-tag-capsule:hover {
 	.news-grid > .story:nth-child(2n) {
 		padding-right: 0;
 	}
+}
 
-	.masthead-icsom span {
+@media only screen and (max-width: 767px) {
+	.icsom-brand-inner {
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.icsom-logo-horizontal {
 		display: none;
+	}
+
+	.icsom-logo-vertical {
+		display: block;
 	}
 }
 
@@ -748,26 +835,22 @@ a.article-tag-capsule:hover {
 		padding: 0 16px;
 	}
 
-	.masthead-main {
-		grid-template-columns: 1fr;
-		gap: 12px;
-	}
-
-	.masthead-ear-left {
-		display: none;
-	}
-
-	.masthead-ear-right {
-		justify-content: center;
-	}
-
 	.masthead-dateline {
 		justify-content: center;
 	}
 
-	.masthead-tagline,
-	.masthead-home-link {
+	.masthead-date,
+	.masthead-tagline {
 		display: none;
+	}
+
+	.masthead-search {
+		width: 100%;
+	}
+
+	.masthead-search input {
+		flex: 1;
+		width: auto;
 	}
 
 	.section-nav-list {

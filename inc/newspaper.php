@@ -18,44 +18,226 @@ function senzasordino_image_uri( $name ) {
 }
 
 /**
- * Prints the section navigation: the primary menu if assigned, otherwise top-level categories.
+ * Prints the section navigation from the menu assigned to the "primary" location.
  *
  * @return void
  */
 function senzasordino_section_nav() {
-	if ( has_nav_menu( 'primary' ) ) {
-		remove_filter( 'walker_nav_menu_start_el', 'twenty_twenty_one_add_sub_menu_toggle', 10 );
-		wp_nav_menu(
-			array(
-				'theme_location' => 'primary',
-				'container'      => false,
-				'menu_class'     => 'section-nav-list',
-				'depth'          => 1,
-				'fallback_cb'    => false,
-			)
-		);
-		add_filter( 'walker_nav_menu_start_el', 'twenty_twenty_one_add_sub_menu_toggle', 10, 4 );
-		return;
-	}
-
-	echo '<ul class="section-nav-list">';
-	printf(
-		'<li class="%1$s"><a href="%2$s">%3$s</a></li>',
-		( is_front_page() || is_home() ) ? 'current-cat' : '',
-		esc_url( home_url( '/' ) ),
-		esc_html__( 'Home', 'senzasordino' )
-	);
-	wp_list_categories(
+	remove_filter( 'walker_nav_menu_start_el', 'twenty_twenty_one_add_sub_menu_toggle', 10 );
+	wp_nav_menu(
 		array(
-			'title_li'   => '',
-			'depth'      => 1,
-			'parent'     => 0,
-			'hide_empty' => true,
-			'orderby'    => 'name',
+			'theme_location' => 'primary',
+			'container'      => false,
+			'menu_class'     => 'section-nav-list',
+			'depth'          => 1,
+			'fallback_cb'    => false,
 		)
 	);
+	add_filter( 'walker_nav_menu_start_el', 'twenty_twenty_one_add_sub_menu_toggle', 10, 4 );
+}
+
+/**
+ * Returns the links shown in the ICSOM site bar, mirroring the navigation on icsom.org.
+ *
+ * Each item is a label mapped to either a path on icsom.org or an array of submenu labels and paths.
+ *
+ * @return array
+ */
+function senzasordino_icsom_nav_items() {
+	$items = array(
+		'Home'          => '/',
+		'About'         => array(
+			'About ICSOM'      => '/about/index.php',
+			'BUTI Scholarship' => '/about/buti.php',
+		),
+		'News'          => '/news/index.php',
+		'Board'         => array(
+			'GB &amp; Counsel' => '/governance/',
+		),
+		'Conferences'   => array(
+			'By Year' => '/conferences/',
+		),
+		'Orchestras'    => '/orchestras/',
+		'Senza Sordino' => array(
+			'Senza Online'   => '/senzasordino/',
+			'Senza Archives' => '/senza/',
+		),
+		'Media'         => array(
+			'ICSOM Profiles' => '/media/profiles.php',
+			'Photo Gallery'  => '/gallery/',
+			'Video Archive'  => '/media/index.php',
+		),
+		'Reference'     => array(
+			'Links'                => '/links/laborLinks.php',
+			'History'              => '/history/',
+			'Conductor Evaluation' => '/conductor-eval/',
+			'Forms &amp; Letters'  => '/forms/',
+			'In Memoriam'          => '/in-memoriam/',
+		),
+		'For Members'   => array(
+			'Reset Password'    => '/access/reset.php',
+			'Join Delegate-L'   => '/contact/delegates.php',
+			'Join Orchestra-L'  => '/contact/orch-L.php',
+		),
+	);
+
+	/**
+	 * Filters the ICSOM site bar links.
+	 *
+	 * @param array $items Label => path, or label => array of submenu label => path.
+	 */
+	return apply_filters( 'senzasordino_icsom_nav_items', $items );
+}
+
+/**
+ * Prints the ICSOM site bar links as a Bootstrap navbar list.
+ *
+ * @return void
+ */
+function senzasordino_icsom_nav() {
+	$base = 'https://www.icsom.org';
+	$id   = 0;
+
+	echo '<ul class="navbar-nav me-auto mb-2 mb-lg-0">';
+	foreach ( senzasordino_icsom_nav_items() as $label => $target ) {
+		if ( ! is_array( $target ) ) {
+			printf(
+				'<li class="nav-item"><a class="nav-link" href="%1$s">%2$s</a></li>',
+				esc_url( $base . $target ),
+				wp_kses_post( $label )
+			);
+			continue;
+		}
+
+		$id++;
+		$toggle_id = 'icsom-nav-dropdown-' . $id;
+		printf(
+			'<li class="nav-item dropdown"><a class="nav-link dropdown-toggle%1$s" href="#" id="%2$s" role="button" data-bs-toggle="dropdown" aria-expanded="false">%3$s</a><ul class="dropdown-menu" aria-labelledby="%2$s">',
+			'Senza Sordino' === $label ? ' active' : '',
+			esc_attr( $toggle_id ),
+			wp_kses_post( $label )
+		);
+		foreach ( $target as $sub_label => $path ) {
+			printf(
+				'<li><a class="dropdown-item" href="%1$s">%2$s</a></li>',
+				esc_url( $base . $path ),
+				wp_kses_post( $sub_label )
+			);
+		}
+		echo '</ul></li>';
+	}
 	echo '</ul>';
 }
+
+/**
+ * Returns the category for the current issue shown on the front page.
+ *
+ * Uses the category chosen in the Customizer; otherwise, of the latest post's categories, the one
+ * whose first post is newest.
+ *
+ * @return WP_Term|null
+ */
+function senzasordino_get_current_issue() {
+	static $current = false;
+	if ( false === $current ) {
+		$current = senzasordino_find_current_issue();
+	}
+	return $current;
+}
+
+/**
+ * Looks up the current issue category; see senzasordino_get_current_issue().
+ *
+ * @return WP_Term|null
+ */
+function senzasordino_find_current_issue() {
+	$issue_id = absint( get_theme_mod( 'senzasordino_current_issue', 0 ) );
+	if ( $issue_id ) {
+		$issue = get_category( $issue_id );
+		if ( $issue instanceof WP_Term ) {
+			return $issue;
+		}
+	}
+
+	$latest = get_posts(
+		array(
+			'numberposts'      => 1,
+			'fields'           => 'ids',
+			'suppress_filters' => false,
+		)
+	);
+	if ( ! $latest ) {
+		return null;
+	}
+
+	$default    = (int) get_option( 'default_category' );
+	$categories = array_filter(
+		get_the_category( $latest[0] ),
+		function ( $category ) use ( $default ) {
+			return $category->term_id !== $default;
+		}
+	);
+	if ( ! $categories ) {
+		return null;
+	}
+
+	// The issue is the category that started most recently; topic categories have older first posts.
+	$issue      = null;
+	$issue_date = '';
+	foreach ( $categories as $category ) {
+		$first = get_posts(
+			array(
+				'numberposts' => 1,
+				'cat'         => $category->term_id,
+				'orderby'     => 'date',
+				'order'       => 'ASC',
+			)
+		);
+		if ( $first && $first[0]->post_date > $issue_date ) {
+			$issue      = $category;
+			$issue_date = $first[0]->post_date;
+		}
+	}
+	return $issue;
+}
+
+/**
+ * Adds the "Current issue" picker to the Customizer.
+ *
+ * @param WP_Customize_Manager $wp_customize Customizer manager.
+ * @return void
+ */
+function senzasordino_customize_current_issue( $wp_customize ) {
+	$choices = array( 0 => __( 'Automatic (most recently started category)', 'senzasordino' ) );
+	foreach ( get_categories( array( 'orderby' => 'term_id', 'order' => 'DESC', 'hide_empty' => false ) ) as $category ) {
+		$choices[ $category->term_id ] = $category->name;
+	}
+
+	$wp_customize->add_section(
+		'senzasordino_front_page',
+		array(
+			'title'    => __( 'Current Issue', 'senzasordino' ),
+			'priority' => 120,
+		)
+	);
+	$wp_customize->add_setting(
+		'senzasordino_current_issue',
+		array(
+			'default'           => 0,
+			'sanitize_callback' => 'absint',
+		)
+	);
+	$wp_customize->add_control(
+		'senzasordino_current_issue',
+		array(
+			'type'        => 'select',
+			'section'     => 'senzasordino_front_page',
+			'label'       => __( 'Issue shown on the front page', 'senzasordino' ),
+			'choices'     => $choices,
+		)
+	);
+}
+add_action( 'customize_register', 'senzasordino_customize_current_issue' );
 
 /**
  * Prints the "kicker" label (the post's primary category) shown above headlines.
@@ -64,6 +246,10 @@ function senzasordino_section_nav() {
  */
 function senzasordino_the_kicker() {
 	$categories = get_the_category();
+	$issue      = senzasordino_get_current_issue();
+	if ( $issue && count( $categories ) > 1 ) {
+		$categories = array_values( wp_list_filter( $categories, array( 'term_id' => $issue->term_id ), 'NOT' ) );
+	}
 	if ( empty( $categories ) ) {
 		return;
 	}
