@@ -37,11 +37,11 @@ $nameplate_tag = ( is_front_page() || is_home() ) ? 'h1' : 'div';
 			<?php if ( has_nav_menu( 'primary' ) ) : ?>
 				<?php senzasordino_section_nav(); ?>
 			<?php endif; ?>
-			<form role="search" method="get" class="masthead-search" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-				<label class="screen-reader-text" for="masthead-search-field"><?php esc_html_e( 'Search', 'senzasordino' ); ?></label>
-				<input type="search" id="masthead-search-field" name="s" placeholder="<?php esc_attr_e( 'Search Senza Sordino', 'senzasordino' ); ?>" value="<?php echo get_search_query(); ?>" />
-				<button type="submit"><?php esc_html_e( 'Go', 'senzasordino' ); ?></button>
-			</form>
 		</nav>
+		<form role="search" method="get" class="masthead-search" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+			<label class="screen-reader-text" for="masthead-search-field"><?php esc_html_e( 'Search', 'senzasordino' ); ?></label>
+			<input type="search" id="masthead-search-field" name="s" placeholder="<?php esc_attr_e( 'Search Senza Sordino', 'senzasordino' ); ?>" value="<?php echo get_search_query(); ?>" />
+			<button type="submit"><?php esc_html_e( 'Go', 'senzasordino' ); ?></button>
+		</form>
 	</div>
 </header>
