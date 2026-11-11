@@ -344,6 +344,13 @@ function senzasordino_past_issues_url() {
  */
 function senzasordino_past_issues_rewrite() {
 	add_rewrite_rule( '^past-issues/?$', 'index.php?senza_past_issues=1', 'top' );
+
+	// Theme updates don't fire after_switch_theme, so flush once when the
+	// saved rules predate this route.
+	$rules = (array) get_option( 'rewrite_rules', array() );
+	if ( ! isset( $rules['^past-issues/?$'] ) && ! isset( $rules['past-issues/?$'] ) ) {
+		flush_rewrite_rules();
+	}
 }
 add_action( 'init', 'senzasordino_past_issues_rewrite' );
 
