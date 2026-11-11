@@ -162,6 +162,13 @@
       "computedHash": "4342a07c9ebe0696713ec93a883c46e56503a587a34d824fabab5ca61e3bdfbb",
       "installMode": "copy"
     },
+    "wait-what": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "skillPath": "skills/productivity/wait-what/SKILL.md",
+      "computedHash": "70c9bf9f5a84b6849760f9492f569d5aa12307a0310323fde5f583144730c26c",
+      "installMode": "copy"
+    },
     "wayfinder": {
       "source": "mattpocock/skills",
       "sourceType": "github",
@@ -174,6 +181,13 @@
       "sourceType": "github",
       "skillPath": "skills/engineering/wizard/SKILL.md",
       "computedHash": "806f7f7461824054ffaf3344e1e56e5e8a42344e22bdf8d22c6a8117eb9b1c38",
+      "installMode": "copy"
+    },
+    "writing-for-agents": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "skillPath": "skills/productivity/writing-for-agents/SKILL.md",
+      "computedHash": "e79a2476b2417b228922453478d9505a6b9af19f3a412e560728ce62ed3555ca",
       "installMode": "copy"
     }
   }
