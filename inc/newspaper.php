@@ -24,6 +24,7 @@ function senzasordino_image_uri( $name ) {
  */
 function senzasordino_section_nav() {
 	if ( has_nav_menu( 'primary' ) ) {
+		remove_filter( 'walker_nav_menu_start_el', 'twenty_twenty_one_add_sub_menu_toggle', 10 );
 		wp_nav_menu(
 			array(
 				'theme_location' => 'primary',
@@ -33,6 +34,7 @@ function senzasordino_section_nav() {
 				'fallback_cb'    => false,
 			)
 		);
+		add_filter( 'walker_nav_menu_start_el', 'twenty_twenty_one_add_sub_menu_toggle', 10, 4 );
 		return;
 	}
 
@@ -49,7 +51,6 @@ function senzasordino_section_nav() {
 			'depth'      => 1,
 			'parent'     => 0,
 			'hide_empty' => true,
-			'number'     => 10,
 			'orderby'    => 'name',
 		)
 	);
