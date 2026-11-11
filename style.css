@@ -127,12 +127,25 @@ div#newsprint {
 	border-bottom: 4px double var(--ink);
 }
 
+.masthead-edition {
+	display: flex;
+	align-items: baseline;
+	column-gap: 0.5em;
+}
+
 .masthead-issue {
 	font-style: normal;
 	text-decoration: none;
 }
 
+.masthead-issue::before {
+	content: "\00b7";
+	margin-right: 0.5em;
+}
+
 .masthead-tagline {
+	margin: 0 0 4px;
+	text-align: center;
 	font-family: var(--font-body);
 	font-style: italic;
 	font-weight: 400;
@@ -141,7 +154,6 @@ div#newsprint {
 }
 
 .section-nav {
-	border-bottom: 4px double var(--ink);
 	overflow-x: auto;
 }
 
@@ -659,13 +671,11 @@ a.article-tag-capsule:hover {
 		flex-wrap: wrap;
 	}
 
-	.masthead-date {
-		display: none;
-	}
 
-	.masthead-tagline {
+
+	.masthead-edition {
 		width: 100%;
-		text-align: center;
+		justify-content: center;
 	}
 
 	.masthead-search {
