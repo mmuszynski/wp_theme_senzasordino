@@ -753,8 +753,12 @@ a.article-tag-capsule:hover {
 		gap: 12px;
 	}
 
-	.masthead-ear {
+	.masthead-ear-left {
 		display: none;
+	}
+
+	.masthead-ear-right {
+		justify-content: center;
 	}
 
 	.masthead-dateline {
