@@ -15,7 +15,7 @@ $deck_words = array(
 	'rail'     => 22,
 	'standard' => 32,
 );
-$show_image = has_post_thumbnail() && 'rail' !== $variant;
+$show_image = twenty_twenty_one_can_show_post_thumbnail() && 'rail' !== $variant;
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'story story-' . $variant ); ?>>

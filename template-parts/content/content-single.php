@@ -28,7 +28,7 @@
 		<?php get_template_part( 'template-parts/post/author', 'byline' ); ?>
 	</header><!-- .entry-header -->
 
-	<?php if ( has_post_thumbnail() ) : ?>
+	<?php if ( twenty_twenty_one_can_show_post_thumbnail() ) : ?>
 		<figure class="story-figure">
 			<?php the_post_thumbnail( 'large', array( 'loading' => false ) ); ?>
 			<?php if ( wp_get_attachment_caption( get_post_thumbnail_id() ) ) : ?>

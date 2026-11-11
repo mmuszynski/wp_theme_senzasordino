@@ -95,6 +95,9 @@ function senzasordino_the_compact_byline() {
  * @return string
  */
 function senzasordino_get_deck( $words = 30 ) {
+	if ( post_password_required() ) {
+		return __( 'This content is password protected.', 'senzasordino' );
+	}
 	if ( has_excerpt() ) {
 		return wp_trim_words( get_the_excerpt(), $words, '&hellip;' );
 	}
