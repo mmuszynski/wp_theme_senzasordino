@@ -402,9 +402,9 @@ function twenty_twenty_one_scripts() {
 		wp_enqueue_style( 'twenty-twenty-one-style', get_template_directory_uri() . '/assets/css/ie.css', array(), wp_get_theme()->get( 'Version' ) );
 	} else {
 		// If not IE, use the standard stylesheet.
-		wp_enqueue_style( 'twenty-twenty-one-style', get_template_directory_uri() . '/style.css', array(), wp_get_theme()->get( 'Version' ) );
-        wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css' );
-        echo get_template_directory_uri() . '/assets/css/bootstrap.min.css';
+		wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css' );
+		wp_enqueue_style( 'senzasordino-fonts', 'https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Libre+Franklin:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap', array(), null );
+		wp_enqueue_style( 'twenty-twenty-one-style', get_template_directory_uri() . '/style.css', array( 'bootstrap', 'senzasordino-fonts' ), wp_get_theme()->get( 'Version' ) );
 	}
 
 	// RTL styles.
@@ -540,6 +540,9 @@ require get_template_directory() . '/inc/menu-functions.php';
 
 // Custom template tags for the theme.
 require get_template_directory() . '/inc/template-tags.php';
+
+// Newspaper layout helpers.
+require get_template_directory() . '/inc/newspaper.php';
 
 // Customizer additions.
 require get_template_directory() . '/classes/class-twenty-twenty-one-customize.php';

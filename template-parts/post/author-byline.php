@@ -11,7 +11,7 @@
     <div class="author-byline <?php echo get_option( 'show_avatars' ) ? 'show-avatars' : ''; ?>">
         <div class="author-byline-content">
             <div class="author-avatar">
-                <?php echo get_avatar( get_the_author_meta( 'ID' ), '85' ); ?>
+                <?php echo get_avatar( get_the_author_meta( 'ID' ), '56' ); ?>
             </div>
 
             <div class="author-byline-information">
@@ -25,8 +25,8 @@
                     ?>
                 </div>
                 <div class="author-byline-post-date">
-                    <? senzasordino_posted_on(); ?>
-                    <? senzasordino_updated_on(); ?>
+                    <?php senzasordino_posted_on(); ?>
+                    <?php senzasordino_updated_on(); ?>
                 </div>
             </div>
         </div><!-- .author-byline-content -->
