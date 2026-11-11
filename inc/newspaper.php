@@ -146,6 +146,52 @@ function senzasordino_get_current_issue() {
 }
 
 /**
+ * Volume and number of an issue category named "Month YYYY", e.g. "Volume 64, No. 3".
+ *
+ * The volume counts from 1962 and the number is the issue's position among that year's issue categories.
+ *
+ * @param WP_Term $issue Issue category.
+ * @return string Empty if the category name is not "Month YYYY".
+ */
+function senzasordino_issue_volume( $issue ) {
+	$parse = function ( $name ) {
+		$time = strtotime( '1 ' . $name );
+		return ( preg_match( '/^[A-Za-z]+ \d{4}$/', trim( $name ) ) && $time ) ? $time : false;
+	};
+
+	$label = '';
+	$time  = $parse( $issue->name );
+	if ( $time ) {
+		$year   = (int) gmdate( 'Y', $time );
+		$number = 1;
+		$terms  = get_terms(
+			array(
+				'taxonomy'   => 'category',
+				'hide_empty' => false,
+				'search'     => (string) $year,
+				'fields'     => 'names',
+			)
+		);
+		foreach ( (array) $terms as $name ) {
+			$other = $parse( $name );
+			if ( $other && (int) gmdate( 'Y', $other ) === $year && $other < $time ) {
+				$number++;
+			}
+		}
+		/* translators: 1: volume number, 2: issue number within the volume. */
+		$label = sprintf( __( 'Volume %1$d, No. %2$d', 'senzasordino' ), $year - 1962, $number );
+	}
+
+	/**
+	 * Filters the volume/number label shown for an issue in the masthead.
+	 *
+	 * @param string  $label Label, e.g. "Volume 64, No. 3".
+	 * @param WP_Term $issue Issue category.
+	 */
+	return apply_filters( 'senzasordino_issue_volume', $label, $issue );
+}
+
+/**
  * Looks up the current issue category; see senzasordino_get_current_issue().
  *
  * @return WP_Term|null

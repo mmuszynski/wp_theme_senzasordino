@@ -20,7 +20,7 @@ $nameplate_tag = ( is_front_page() || is_home() ) ? 'h1' : 'div';
 	</<?php echo $nameplate_tag; // phpcs:ignore WordPress.Security.EscapeOutput ?>>
 
 	<div class="masthead-dateline">
-		<time class="masthead-date" datetime="<?php echo esc_attr( current_time( 'Y-m-d' ) ); ?>"><?php echo esc_html( date_i18n( 'l, F j, Y' ) ); ?></time>
+		<span class="masthead-date"><?php echo esc_html( $issue ? senzasordino_issue_volume( $issue ) : '' ); ?></span>
 		<?php if ( $description || $issue ) : ?>
 			<span class="masthead-tagline">
 				<?php echo esc_html( $description ); ?>
