@@ -36,9 +36,12 @@ $nameplate_tag = ( is_front_page() || is_home() ) ? 'h1' : 'div';
 		</form>
 	</div>
 
-	<?php if ( has_nav_menu( 'primary' ) ) : ?>
-		<nav class="section-nav" aria-label="<?php esc_attr_e( 'Sections', 'senzasordino' ); ?>">
+	<nav class="section-nav" aria-label="<?php esc_attr_e( 'Sections', 'senzasordino' ); ?>">
+		<ul class="section-nav-list">
+			<li><a href="<?php echo esc_url( senzasordino_past_issues_url() ); ?>"><?php esc_html_e( 'Past Issues', 'senzasordino' ); ?></a></li>
+		</ul>
+		<?php if ( has_nav_menu( 'primary' ) ) : ?>
 			<?php senzasordino_section_nav(); ?>
-		</nav>
-	<?php endif; ?>
+		<?php endif; ?>
+	</nav>
 </header>

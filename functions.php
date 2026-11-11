@@ -352,18 +352,7 @@ add_action( 'after_setup_theme', 'twenty_twenty_one_setup' );
  * @return void
  */
 function twenty_twenty_one_widgets_init() {
-
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Footer', 'twentytwentyone' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here to appear in your footer.', 'twentytwentyone' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
+	// No sidebars: the design is a single-column news layout.
 }
 add_action( 'widgets_init', 'twenty_twenty_one_widgets_init' );
 
@@ -402,9 +391,8 @@ function twenty_twenty_one_scripts() {
 		wp_enqueue_style( 'twenty-twenty-one-style', get_template_directory_uri() . '/assets/css/ie.css', array(), wp_get_theme()->get( 'Version' ) );
 	} else {
 		// If not IE, use the standard stylesheet.
-		wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css' );
 		wp_enqueue_style( 'senzasordino-fonts', 'https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Libre+Franklin:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap', array(), null );
-		wp_enqueue_style( 'twenty-twenty-one-style', get_template_directory_uri() . '/style.css', array( 'bootstrap', 'senzasordino-fonts' ), wp_get_theme()->get( 'Version' ) );
+		wp_enqueue_style( 'twenty-twenty-one-style', get_template_directory_uri() . '/style.css', array( 'senzasordino-fonts' ), wp_get_theme()->get( 'Version' ) );
 	}
 
 	// RTL styles.
@@ -455,9 +443,6 @@ function twenty_twenty_one_scripts() {
 			true
 		);
 	}
-
-	// Bootstrap (ICSOM navigation bar dropdowns and mobile toggle).
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array(), '5.1.3', true );
 
 	// Responsive embeds script.
 	wp_enqueue_script(

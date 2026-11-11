@@ -11,7 +11,7 @@
     <div class="author-byline <?php echo get_option( 'show_avatars' ) ? 'show-avatars' : ''; ?>">
         <div class="author-byline-content">
             <div class="author-avatar">
-                <?php echo get_avatar( get_the_author_meta( 'ID' ), '56' ); ?>
+                <?php echo get_avatar( get_the_author_meta( 'ID' ), '56', senzasordino_image_uri( 'byline-silhouette.png' ) ); ?>
             </div>
 
             <div class="author-byline-information">
