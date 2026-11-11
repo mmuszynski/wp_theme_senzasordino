@@ -21,7 +21,7 @@
 
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
-		<?php if ( has_excerpt() ) : ?>
+		<?php if ( has_excerpt() && ! post_password_required() ) : ?>
 			<p class="story-standfirst"><?php echo esc_html( get_the_excerpt() ); ?></p>
 		<?php endif; ?>
 
