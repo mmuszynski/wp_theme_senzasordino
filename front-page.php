@@ -23,14 +23,6 @@ if ( $senzasordino_issue ) {
 }
 
 if ( $issue_query && $issue_query->have_posts() ) :
-	?>
-	<header class="issue-header">
-		<p class="issue-label"><?php esc_html_e( 'Current Issue', 'senzasordino' ); ?></p>
-		<h2 class="issue-title">
-			<a href="<?php echo esc_url( get_category_link( $senzasordino_issue ) ); ?>"><?php echo esc_html( $senzasordino_issue->name ); ?></a>
-		</h2>
-	</header>
-	<?php
 	get_template_part( 'template-parts/content/news-grid', null, array( 'query' => $issue_query ) );
 	wp_reset_postdata();
 else :

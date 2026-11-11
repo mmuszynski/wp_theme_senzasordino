@@ -8,6 +8,7 @@
  */
 
 $description   = get_bloginfo( 'description', 'display' );
+$issue         = senzasordino_get_current_issue();
 $nameplate_tag = ( is_front_page() || is_home() ) ? 'h1' : 'div';
 ?>
 
@@ -20,8 +21,13 @@ $nameplate_tag = ( is_front_page() || is_home() ) ? 'h1' : 'div';
 
 	<div class="masthead-dateline">
 		<time class="masthead-date" datetime="<?php echo esc_attr( current_time( 'Y-m-d' ) ); ?>"><?php echo esc_html( date_i18n( 'l, F j, Y' ) ); ?></time>
-		<?php if ( $description ) : ?>
-			<span class="masthead-tagline"><?php echo esc_html( $description ); ?></span>
+		<?php if ( $description || $issue ) : ?>
+			<span class="masthead-tagline">
+				<?php echo esc_html( $description ); ?>
+				<?php if ( $issue ) : ?>
+					<a class="masthead-issue" href="<?php echo esc_url( get_category_link( $issue ) ); ?>"><?php echo esc_html( $issue->name ); ?></a>
+				<?php endif; ?>
+			</span>
 		<?php endif; ?>
 		<form role="search" method="get" class="masthead-search" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 			<label class="screen-reader-text" for="masthead-search-field"><?php esc_html_e( 'Search', 'senzasordino' ); ?></label>

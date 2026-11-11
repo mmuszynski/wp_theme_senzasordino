@@ -207,6 +207,16 @@ div#newsprint {
 	border-bottom: 4px double var(--ink);
 }
 
+.masthead-issue {
+	font-style: normal;
+	text-decoration: none;
+}
+
+.masthead-issue::before {
+	content: "\00b7";
+	margin: 0 0.5em;
+}
+
 .masthead-tagline {
 	font-family: var(--font-body);
 	font-style: italic;
@@ -248,33 +258,6 @@ div#newsprint {
 /*
  CURRENT ISSUE HEADING (front page)
  */
-.issue-header {
-	margin: 20px 0 4px;
-	text-align: center;
-}
-
-.issue-label {
-	margin: 0;
-	font-family: var(--font-label);
-	font-size: 12px;
-	font-weight: 700;
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	color: var(--accent);
-}
-
-.issue-title {
-	margin: 2px 0 0;
-	font-family: var(--font-headline);
-	font-size: 34px;
-	font-weight: 700;
-	line-height: 1.15;
-}
-
-.issue-title a {
-	text-decoration: none;
-}
-
 /*
  SECTION HEADINGS AND ARCHIVE HEADERS
  */
@@ -839,9 +822,17 @@ a.article-tag-capsule:hover {
 		justify-content: center;
 	}
 
-	.masthead-date,
-	.masthead-tagline {
+	.masthead-dateline {
+		flex-wrap: wrap;
+	}
+
+	.masthead-date {
 		display: none;
+	}
+
+	.masthead-tagline {
+		width: 100%;
+		text-align: center;
 	}
 
 	.masthead-search {
