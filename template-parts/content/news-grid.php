@@ -35,8 +35,8 @@ $senzasordino_render = function ( $count, $variant ) use ( $grid_query ) {
 			<?php $senzasordino_render( $lead_count, 'lead' ); ?>
 		</div>
 		<?php if ( $rail_count ) : ?>
-			<aside class="news-rail" aria-label="<?php esc_attr_e( 'Top stories', 'senzasordino' ); ?>">
-				<h2 class="section-heading"><?php esc_html_e( 'Top Stories', 'senzasordino' ); ?></h2>
+			<aside class="news-rail" aria-label="<?php esc_attr_e( 'More stories', 'senzasordino' ); ?>">
+				<h2 class="section-heading"><?php esc_html_e( 'More Stories', 'senzasordino' ); ?></h2>
 				<?php $senzasordino_render( $rail_count, 'rail' ); ?>
 			</aside>
 		<?php endif; ?>
@@ -45,9 +45,6 @@ $senzasordino_render = function ( $count, $variant ) use ( $grid_query ) {
 
 <?php if ( $more_count > 0 ) : ?>
 	<section class="news-more">
-		<?php if ( $lead_count ) : ?>
-			<h2 class="section-heading"><?php esc_html_e( 'More Stories', 'senzasordino' ); ?></h2>
-		<?php endif; ?>
 		<div class="news-grid">
 			<?php $senzasordino_render( $more_count, 'standard' ); ?>
 		</div>

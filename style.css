@@ -132,11 +132,6 @@ div#newsprint {
 	text-decoration: none;
 }
 
-.masthead-issue::before {
-	content: "\00b7";
-	margin: 0 0.5em;
-}
-
 .masthead-tagline {
 	font-family: var(--font-body);
 	font-style: italic;
@@ -776,7 +771,8 @@ Screen Reader lifted directly from 2021 original
  */
 .section-nav {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
+	align-items: center;
 	flex-wrap: wrap;
 	column-gap: 24px;
 }
