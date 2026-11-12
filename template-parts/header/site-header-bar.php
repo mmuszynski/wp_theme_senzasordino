@@ -27,7 +27,22 @@ $nameplate_tag = ( is_front_page() || is_home() ) ? 'h1' : 'div';
 		<span class="masthead-edition">
 			<span class="masthead-date"><?php echo esc_html( $issue ? senzasordino_issue_volume( $issue ) : '' ); ?></span>
 			<?php if ( $issue ) : ?>
-				<a class="masthead-issue" href="<?php echo esc_url( get_category_link( $issue ) ); ?>"><?php echo esc_html( $issue->name ); ?></a>
+				<details class="masthead-issue-nav">
+					<summary class="masthead-issue"><?php echo esc_html( $issue->name ); ?></summary>
+					<ul class="issue-menu">
+						<li><a href="<?php echo esc_url( get_category_link( $issue ) ); ?>"><strong><?php echo esc_html( $issue->name ); ?></strong></a></li>
+						<?php foreach ( senzasordino_issue_categories() as $senzasordino_entry ) : ?>
+							<?php
+							$senzasordino_term = $senzasordino_entry['term'];
+							if ( $senzasordino_term->term_id === $issue->term_id ) {
+								continue;
+							}
+							?>
+							<li><a href="<?php echo esc_url( get_category_link( $senzasordino_term ) ); ?>"><?php echo esc_html( $senzasordino_term->name ); ?></a></li>
+						<?php endforeach; ?>
+						<li class="issue-menu-all"><a href="<?php echo esc_url( senzasordino_past_issues_url() ); ?>"><?php esc_html_e( 'All past issues', 'senzasordino' ); ?></a></li>
+					</ul>
+				</details>
 			<?php endif; ?>
 		</span>
 		<nav class="section-nav" aria-label="<?php esc_attr_e( 'Sections', 'senzasordino' ); ?>">
