@@ -22,10 +22,7 @@ $description = get_the_archive_description();
 		<?php endif; ?>
 	</header><!-- .page-header -->
 
-	<?php while ( have_posts() ) : ?>
-		<?php the_post(); ?>
-		<?php get_template_part( 'template-parts/content/content', get_theme_mod( 'display_excerpt_or_full_post', 'excerpt' ) ); ?>
-	<?php endwhile; ?>
+	<?php get_template_part( 'template-parts/content/news-grid' ); ?>
 
 	<?php twenty_twenty_one_the_posts_navigation(); ?>
 

@@ -11,11 +11,6 @@
 
 get_header();
 $description = get_the_archive_description();
-
-
-// Bootstrap
-//wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css' );
-echo get_template_directory_uri() . '/css/bootstrap.min.css';
 ?>
 
 <?php if ( have_posts() ) : ?>
@@ -27,17 +22,7 @@ echo get_template_directory_uri() . '/css/bootstrap.min.css';
 		<?php endif; ?>
 	</header><!-- .page-header -->
 
-    <button class="btn btn-primary">Button!</button>
-
-	<?php while ( have_posts() ) : ?>
-		<?php the_post(); ?>
-
-<!-- Need to remove option in class-twenty-twenty-one-customize.php
-$wp_customize->add_setting('display_excerpt_or_full_post' -->
-
-        <?php get_template_part( 'template-parts/post/author', 'byline' ); ?>
-		<?php get_template_part( 'template-parts/content/content', 'excerpt' ); ?>
-	<?php endwhile; ?>
+	<?php get_template_part( 'template-parts/content/news-grid' ); ?>
 
 	<?php twenty_twenty_one_the_posts_navigation(); ?>
 
