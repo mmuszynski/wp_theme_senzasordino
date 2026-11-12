@@ -45,14 +45,11 @@ $nameplate_tag = ( is_front_page() || is_home() ) ? 'h1' : 'div';
 				</details>
 			<?php endif; ?>
 		</span>
-		<nav class="section-nav" aria-label="<?php esc_attr_e( 'Sections', 'senzasordino' ); ?>">
-			<ul class="section-nav-list">
-				<li><a href="<?php echo esc_url( senzasordino_past_issues_url() ); ?>"><?php esc_html_e( 'Past Issues', 'senzasordino' ); ?></a></li>
-			</ul>
-			<?php if ( has_nav_menu( 'primary' ) ) : ?>
+		<?php if ( has_nav_menu( 'primary' ) ) : ?>
+			<nav class="section-nav" aria-label="<?php esc_attr_e( 'Sections', 'senzasordino' ); ?>">
 				<?php senzasordino_section_nav(); ?>
-			<?php endif; ?>
-		</nav>
+			</nav>
+		<?php endif; ?>
 		<form role="search" method="get" class="masthead-search" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 			<label class="screen-reader-text" for="masthead-search-field"><?php esc_html_e( 'Search', 'senzasordino' ); ?></label>
 			<input type="search" id="masthead-search-field" name="s" placeholder="<?php esc_attr_e( 'Search Senza Sordino', 'senzasordino' ); ?>" value="<?php echo get_search_query(); ?>" />

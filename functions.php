@@ -444,6 +444,15 @@ function twenty_twenty_one_scripts() {
 		);
 	}
 
+	// Masthead issue dropdown: close on outside click / Escape.
+	wp_enqueue_script(
+		'senzasordino-masthead-issue-nav',
+		get_template_directory_uri() . '/assets/js/masthead-issue-nav.js',
+		array(),
+		wp_get_theme()->get( 'Version' ),
+		true
+	);
+
 	// Responsive embeds script.
 	wp_enqueue_script(
 		'twenty-twenty-one-responsive-embeds-script',
